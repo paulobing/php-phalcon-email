@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+  rabbitmq3:
+    container_name: "rabbitmq"
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypassword
+    ports:
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+
+  app:
+    container_name: phalcon-server
+    build:
+      context: ./
+      dockerfile: docker/app/Dockerfile
+    # command:
+    #  - .htrouter.php
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./phpconfig:/usr/local/etc/php
+      - ./application:/var/www/html
+    depends_on:
+      - rabbitmq3

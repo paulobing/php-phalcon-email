@@ -1,0 +1,14 @@
+{
+  "email": {
+    "emailRecipient": "user@happycow.net",
+    "smtp": true,
+    "port": 2525,
+    "emailServer": "smtp.mailtrap.io",
+    "username": "e6c8b9f918caed",
+    "password": "46791265f6373b",
+    "mailFrom": "info@mailtrap.io",
+    "mailFromName": "Mailtrap",
+    "replyTo": "info@mailtrap.io",
+    "replyToName": "Mailtrap"
+  }
+}

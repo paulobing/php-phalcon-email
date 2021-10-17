@@ -22,7 +22,7 @@ php-download-composer:
 
 php-run: rabbit-start
 	php app/helper/QueueHelper.php &
-	php -S localhost:8000 -t public .htrouter.php
+	php -S localhost:8000 -t app/public app/.htrouter.php
 
 rabbit-start:
 	docker-compose up -d rabbitmq3

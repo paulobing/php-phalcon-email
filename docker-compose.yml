@@ -22,6 +22,6 @@ services:
       - "80:80"
     volumes:
       - ./phpconfig:/usr/local/etc/php
-      - ./application:/var/www/html
+      - ./app:/var/www/html
     depends_on:
       - rabbitmq3

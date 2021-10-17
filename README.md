@@ -3,6 +3,14 @@
 # Phalcon Docker Compose
 
 Based on https://github.com/iamcommee/phalcon-docker-compose-example
+TODO:
+    docker:
+        make install
+        make run
+    php local:
+        make php-build
+        make php-run
+
 
 The unofficial Phalcon Docker Environment
 

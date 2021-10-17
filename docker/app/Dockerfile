@@ -37,7 +37,5 @@ RUN docker-php-ext-install pdo_mysql
 # Enable mod rewrite
 RUN a2enmod rewrite
 
-COPY .htrouter.php /var/www/html
-
-ENTRYPOINT ["/usr/local/bin/php", "-S", "localhost:80", "-t", "/var/www/html", "/var/www/html/.htrouter.php"]
-
+# /usr/local/bin/php -S 0.0.0.0:80 -t /var/www/html /var/www/html/.htrouter.php
+ENTRYPOINT ["/usr/local/bin/php", "-S", "0.0.0.0:80", "-t", "/var/www/html", "/var/www/html/.htrouter.php"]

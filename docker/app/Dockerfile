@@ -1,4 +1,13 @@
+FROM composer as builder
+WORKDIR /app/
+COPY composer.json ./
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-enable sockets
+RUN composer install
+
 FROM php:7.2-apache
+
+COPY --from=builder /app/vendor /var/www/vendor
 
 # PSR for phalcon 4.x
 ARG PSR_VERSION=0.6.1
@@ -33,6 +42,8 @@ RUN apt-get update && \
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-enable sockets
 
 # Enable mod rewrite
 RUN a2enmod rewrite

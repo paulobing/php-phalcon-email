@@ -8,8 +8,10 @@ TODO:
         make install
         make run
     php local:
+        Requirements: php 7.2 phalcon 4.1.2
         make php-build
         make php-run
+        
 
 
 The unofficial Phalcon Docker Environment

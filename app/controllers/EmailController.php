@@ -7,11 +7,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 include_once(__DIR__ . '/../helper/EmailHelper.php');
 include_once(__DIR__ . '/../helper/LoggerHelper.php');
 
-// TODO add rabbit to docker
-// add something to queue
-// process queue by listener maybe?
-
-require 'vendor/autoload.php';
+require BASE_PATH . '/../vendor/autoload.php';
 
 class EmailController extends Controller
 {

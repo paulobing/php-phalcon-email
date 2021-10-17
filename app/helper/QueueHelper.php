@@ -5,8 +5,6 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 include_once('EmailHelper.php');
 include_once('LoggerHelper.php');
 
-require 'vendor/autoload.php';
-
 class QueueHelper
 {
     /**

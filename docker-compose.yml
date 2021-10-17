@@ -21,7 +21,9 @@ services:
     ports:
       - "80:80"
     volumes:
+      - /var/www/vendor
       - ./phpconfig:/usr/local/etc/php
       - ./app:/var/www/html
+      - ./config:/var/www/config
     depends_on:
       - rabbitmq3

@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 use Phalcon\Config\Adapter\Json;
 
-require 'vendor/autoload.php';
+require BASE_PATH . '/../vendor/autoload.php';
 
 class EmailHelper
 {

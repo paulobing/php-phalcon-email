@@ -1,8 +1,8 @@
-<img align="right" width="175px" src="http://i.imgur.com/mdZ8Ktf.png" />
 <img align="right" width="175px" height="100px" src="https://d33wubrfki0l68.cloudfront.net/5a27d37defa5f82b8542756e2ecb0108db2f5a45/eb216/assets/images/footer_logo.svg" />
 
-
 # Phalcon Docker Compose
+
+Based on https://github.com/iamcommee/phalcon-docker-compose-example
 
 The unofficial Phalcon Docker Environment
 

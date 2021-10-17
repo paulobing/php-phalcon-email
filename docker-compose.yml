@@ -17,8 +17,6 @@ services:
     build:
       context: ./
       dockerfile: docker/app/Dockerfile
-    # command:
-    #  - .htrouter.php
     restart: always
     ports:
       - "80:80"

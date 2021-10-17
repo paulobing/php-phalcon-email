@@ -21,20 +21,15 @@ php-download-composer:
 	php -r "unlink('composer-setup.php');"
 
 php-run: rabbit-start
-	docker logs --since 5s -f rabbitmq | sed '/Server startup complete/ q'
 	php app/helper/QueueHelper.php &
 	php -S localhost:8000 -t public .htrouter.php
 
-NOW := $(shell date "+%Y-%m-%dT%H:%M:%S")
-
 rabbit-start:
-	docker-compose run -d rabbitmq3
-	docker logs --since ${NOW} rabbitmq | grep "Server startup complete" | wc -l
-
-n ?= 10
-loop:
-	n=$(n)
-	echo ${n}
+	docker-compose up -d rabbitmq3
+	# FIXME find a way to find out if rabbitmq has started
+	sleep 10
 
 php-stop:
 	docker stop rabbitmq
+
+clean: php-stop stop

@@ -1,6 +1,5 @@
 {
   "require": {
-    "phalcon/cphalcon": "v4.1.2",
     "phpmailer/phpmailer": "^6.5",
     "php-amqplib/php-amqplib": "v3.0.0"
   }

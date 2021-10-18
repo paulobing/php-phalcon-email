@@ -1,9 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-
 use Phalcon\Config\Adapter\Json;
 
 require BASE_PATH . '/../vendor/autoload.php';
+
+include_once('LoggerHelper.php');
+
 
 class EmailHelper
 {

@@ -11,6 +11,7 @@ TODO:
         Requirements: php 7.2 phalcon 4.1.2
         make php-build
         make php-run
+        switch composer.local.json composer.json
         
 
 

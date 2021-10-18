@@ -1,6 +1,7 @@
 <?php
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 include_once('EmailHelper.php');
 include_once('LoggerHelper.php');
@@ -8,7 +9,7 @@ include_once('LoggerHelper.php');
 class QueueHelper
 {
     /**
-     * @var \Phalcon\Logger
+     * @var Phalcon\Logger
      */
     private $logger;
     private $emailHelper;
@@ -19,10 +20,28 @@ class QueueHelper
         $this->emailHelper = new EmailHelper();
     }
 
+    public function queueEmail(string $emailAddress): bool
+    {
+        $this->logger->info('Publishing on Email Queue');
+        $connection = new AMQPStreamConnection(RABBIT_HOSTNAME, 5672, 'myuser', 'mypassword');
+        $channel = $connection->channel();
+        $channel->queue_declare('emails', false, false, false, false);
+        $msg = new AMQPMessage($emailAddress);
+        $channel->basic_publish($msg, '', 'emails');
+        $channel->close();
+        try {
+            $connection->close();
+        } catch (Exception $e) {
+            $this->logger->error('Error closing connection: ' . $e->getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public function startEmailQueueConsumer()
     {
         $this->logger->info('Started Email Queue Consumer');
-        $connection = new AMQPStreamConnection('localhost', 5672, 'myuser', 'mypassword');
+        $connection = new AMQPStreamConnection(RABBIT_HOSTNAME, 5672, 'myuser', 'mypassword');
         $channel = $connection->channel();
         $channel->queue_declare('emails', false, false, false, false);
 
@@ -45,4 +64,3 @@ class QueueHelper
 
 }
 
-(new QueueHelper())->startEmailQueueConsumer();

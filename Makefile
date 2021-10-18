@@ -6,7 +6,10 @@ install:
 	docker-compose build
 
 run:
-	docker-compose up
+	docker-compose up -d
+	# FIXME find a better way to find out if rabbitmq has started
+	sleep 10
+	php app/helper/QueueConsumerProcess.php
 
 stop:
 	docker-compose down
@@ -21,12 +24,12 @@ php-download-composer:
 	php -r "unlink('composer-setup.php');"
 
 php-run: rabbit-start
-	php app/helper/QueueHelper.php &
+	php app/helper/QueueConsumerProcess.php &
 	php -S localhost:8000 -t app/public app/.htrouter.php
 
 rabbit-start:
 	docker-compose up -d rabbitmq3
-	# FIXME find a way to find out if rabbitmq has started
+	# FIXME find a better way to find out if rabbitmq has started
 	sleep 10
 
 php-stop:

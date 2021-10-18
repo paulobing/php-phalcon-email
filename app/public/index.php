@@ -8,6 +8,8 @@ use Phalcon\Mvc\Application;
 
 define('BASE_PATH', dirname(__DIR__));
 const APP_PATH = BASE_PATH;
+define('RABBIT_HOSTNAME', $_ENV['RABBIT_HOSTNAME'] ?: 'localhost');
+
 
 $loader = new Loader();
 
